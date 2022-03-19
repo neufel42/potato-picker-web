@@ -14,8 +14,8 @@ export const ConnectFour = (props) => {
     //-- and a renderer property (optional). If no renderer
     //-- is supplied with the entity - it won't get displayed.
     board: { rows: rows, columns: columns, renderer: <BoardRenderer />},    
-    player1: { entityName: "player1", name: "Player One", color: "#ff0000", playerPosition: 0, totalPlayers: 2, isActive: true, renderer: <PlayerRenderer />},
-    player2: { entityName: "player2", name: "Player Two", color: "#ffff00", playerPosition: 1, totalPlayers: 2, isActive: false, renderer: <PlayerRenderer />},
+    player1: { inputMethod: "mouse", entityName: "player1", name: "Player One", color: "#ff0000", playerPosition: 0, totalPlayers: 2, isActive: true, renderer: <PlayerRenderer />},
+    player2: { inputMethod: "keyboard", entityName: "player2", name: "Player Two", color: "#ffff00", playerPosition: 1, totalPlayers: 2, isActive: false, renderer: <PlayerRenderer />},
   };
 
   for(let r = 0; r < rows; r++) { 
@@ -25,6 +25,12 @@ export const ConnectFour = (props) => {
       entities[spotName] = spot;
     }
   }  
+
+  for(let c = 0; c < columns; c++) {
+    let spotName = "label" + (rows)  + "-" + c;
+    let spot = { label: c + 1, spotName: spotName, row: -1, column: c, rows: rows, columns: columns, color: "#ffffff", isSelected: false, renderer: <SpotRenderer /> }
+    entities[spotName] = spot;
+  }
 
   return (
     <GameEngine

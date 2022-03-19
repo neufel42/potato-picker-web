@@ -4,6 +4,7 @@ export const SpotRenderer = (props) => {
   const size = 100;
   const spacing = 2;
 
+  const label = props.label || false;
   const rows = props.rows || 6;
   const columns = props.columns || 7;
   const column = props.column || 0;
@@ -18,10 +19,18 @@ export const SpotRenderer = (props) => {
   const color = props.color;
 
   return (
-    <div 
-      data-spot-name={spotName} 
-      data-column={column}
-      data-row={row}
-      style={{ position: "absolute", width: size, height: size, backgroundColor: color, left: x, top: y }} />
+    <>
+      {label &&
+      <div         
+        style={{ position: "absolute", width: size, height: size, backgroundColor: "blue", color: "white", fontSize: "48px", left: x, top: y }} >{label}</div>
+      }
+      {!label &&
+        <div 
+          data-spot-name={spotName} 
+          data-column={column}
+          data-row={row}
+          style={{ position: "absolute", width: size, height: size, backgroundColor: color, left: x, top: y }} />
+      }
+    </>      
   );  
 }

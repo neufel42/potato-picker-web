@@ -4,10 +4,10 @@ const SpotSelect = (entities, { input }) => {
     //-- Example: return { ...entities, t.id: { UPDATED COMPONENTS }};
     //-- That said, it's probably worth considering performance implications in either case.
   
-    const { payload } = input.find(x => x.name === "onMouseDown") || {};
+    const { payload } = input.find(x => (x.name === "onMouseDown" || x.name === "onKeyDown")) || {};
     
     //input.forEach((item) => {
-    //  console.log("OUTSIDE!!!", item);
+//      console.log("OUTSIDE!!!", item, payload);
     //});
 
     const calcWinner = () => {
@@ -36,6 +36,16 @@ const SpotSelect = (entities, { input }) => {
           if (checkHorizontalWin(spot, neededForWin)) {
             return true;
           }          
+
+          // up right
+          if (checkDiagonalWin(spot, neededForWin, true)) {
+            return true;
+          }          
+
+          // up left
+          if (checkDiagonalWin(spot, neededForWin, false)) {
+            return true;
+          }          
         }
       }            
 
@@ -48,9 +58,6 @@ const SpotSelect = (entities, { input }) => {
       {
         return false;
       }
-
-      let counter = 1;
-
 
       for (let r = spot.row + 1; r < spot.row + neededForWin; r++) {
         // return false as soon as we get an invalid spot
@@ -80,12 +87,40 @@ const SpotSelect = (entities, { input }) => {
         return false;
       }
 
-      let counter = 1;
-
-
       for (let c = spot.column + 1; c < spot.column + neededForWin; c++) {
         // return false as soon as we get an invalid spot
         let spotName = "spot" + spot.row + "-" + c;
+        const nextSpot = entities[spotName];
+
+        if (!nextSpot) {
+          return false;
+        }
+
+        if (!nextSpot.isSelected) {
+          return false;
+        }        
+
+        if (nextSpot.player !== spot.player) {
+          return false;
+        }        
+      }
+
+      return true;
+    }
+
+    const checkDiagonalWin = (spot, neededForWin, upRight) => {      
+      if (!spot.isSelected)
+      {
+        return false;
+      }
+
+      for (let i = 1; i < neededForWin; i++) {
+        // return false as soon as we get an invalid spot
+        let spotName = "spot" + (spot.row + i)  + "-" + (spot.column + i);
+        if (!upRight)
+        {
+          spotName = "spot" + (spot.row + i)  + "-" + (spot.column - i);
+        }
         const nextSpot = entities[spotName];
 
         if (!nextSpot) {
@@ -124,9 +159,18 @@ const SpotSelect = (entities, { input }) => {
         activePlayer = player2;
       }
       
-      const column = payload.target.dataset.column;      
-
-      if (column)
+      let column = null;
+      console.log("PAYLOAD", payload.type, activePlayer.inputMethod, activePlayer);
+      if (payload.type === "keydown" && (activePlayer.inputMethod === "keyboard" || activePlayer.inputMethod === "any"))
+      {        
+        column = parseInt(payload.key) - 1;        
+      }
+      else if (payload.type === "mousedown" && (activePlayer.inputMethod === "mouse" || activePlayer.inputMethod === "any"))
+      {        
+        column = payload.target.dataset.column;      
+      }
+      
+      if (column || column === 0)
       {
         // Find what row we can add to
         for(let r = 0; r < rows; r++)
