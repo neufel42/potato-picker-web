@@ -17,7 +17,7 @@ export const PlayerRenderer = (props) => {
   {
     x = (playerPosition / (totalPlayers - 1)) * 100;
     if (playerPosition > 0) {
-      x = "calc(" + x.toString() + "%" + " - " + width;
+      x = "calc(" + x.toString() + "% - " + width;
     }
   }
 

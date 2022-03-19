@@ -6,7 +6,7 @@ export const SpotRenderer = (props) => {
 
   const label = props.label || false;
   const rows = props.rows || 6;
-  const columns = props.columns || 7;
+  //const columns = props.columns || 7;
   const column = props.column || 0;
   const row = props.row || 0;
   const spotName = props.spotName || "spot";  
