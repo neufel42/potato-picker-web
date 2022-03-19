@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import SimpleGame from './SimpleGame';
-import ConnectFour from './games/connect-four/ConnectFour';
+import { ConnectFour } from './games/connect-four/ConnectFour';
 
 
 function App() {
