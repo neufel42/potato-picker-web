@@ -11,7 +11,7 @@ function App() {
   return (    
     <>
       { gameState !== "menu" &&
-        <button style={{position: "absolute"}} onClick={() => setGameState("menu")}>Exit</button>
+        <button style={{position: "absolute", zIndex: 10000}} onClick={() => setGameState("menu")}>Exit</button>
       }
       { gameState === "simple" &&
         <SimpleGame />
