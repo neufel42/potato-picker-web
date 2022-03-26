@@ -6,10 +6,9 @@ const Physics = (entities, options) => {
     const windowHeight = entities.windowHeight;
     const windowWidth = entities.windowWidth;
     
-    let engine = entities.physics.engine
-    //console.log("OPTIONS", options);        
+    let engine = entities.physics.engine    
 
-    if (touches)
+    if (touches) // touches must be only react-native
     {
         touches.filter(t => t.type === 'press')
             .forEach(t => {
@@ -19,16 +18,16 @@ const Physics = (entities, options) => {
                 })
             });
     }
-    
-    const { payload } = input.find(x => (x.name === "onMouseDown" || x.name === "onKeyPress")) || {};
-    console.log("PAYLOAD", payload);
-    if (payload)
-    {
-        Matter.Body.setVelocity(entities.Bird.body, {
-            x: 0,
-            y: -8
-        });
-    }
+    else {
+        const { payload } = input.find(x => (x.name === "onMouseDown" || x.name === "onKeyPress")) || {};
+        if (payload)
+        {
+            Matter.Body.setVelocity(entities.Bird.body, {
+                x: 0,
+                y: -8
+            });
+        }
+    }    
 
     Matter.Engine.update(engine, time.delta)
 
