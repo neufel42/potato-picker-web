@@ -26,31 +26,31 @@ function App() {
       }      
       { gameState === "pac-man" &&
         <>
-        <PacMan start={true} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"red"} />
-        <PacMan start={true} color={"pink"} />
-        <PacMan start={true} color={"green"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"red"} />
-        <PacMan start={true} color={"pink"} />
-        <PacMan start={true} color={"green"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"red"} />
-        <PacMan start={true} color={"pink"} />
-        <PacMan start={true} color={"green"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"blue"} />
-        <PacMan start={true} color={"red"} />
-        <PacMan start={true} color={"pink"} />
-        <PacMan start={true} color={"green"} />
-        <PacMan start={true} color={"blue"} />
+        <PacMan start={true} direction="right" color={"yellow"}/>
+        <PacMan start={true} direction="right" color={"pink"}/>
+        <PacMan start={true} direction="left" color={"orange"} />
+        <PacMan start={true} direction="up" color={"blue"} />
+        <PacMan start={true} direction="down" color={"red"} />
+        <PacMan start={true} direction="right" color={"pink"}/>
+        <PacMan start={true} direction="left" color={"orange"} />
+        <PacMan start={true} direction="up" color={"blue"} />
+        <PacMan start={true} direction="down" color={"red"} />
+        <PacMan start={true} direction="right" color={"pink"}/>
+        <PacMan start={true} direction="left" color={"orange"} />
+        <PacMan start={true} direction="up" color={"blue"} />
+        <PacMan start={true} direction="down" color={"red"} />
+        <PacMan start={true} direction="right" color={"pink"}/>
+        <PacMan start={true} direction="left" color={"orange"} />
+        <PacMan start={true} direction="up" color={"blue"} />
+        <PacMan start={true} direction="down" color={"red"} />
+        <PacMan start={true} direction="right" color={"pink"}/>
+        <PacMan start={true} direction="left" color={"orange"} />
+        <PacMan start={true} direction="up" color={"blue"} />
+        <PacMan start={true} direction="down" color={"red"} />
+        <PacMan start={true} direction="right" color={"pink"}/>
+        <PacMan start={true} direction="left" color={"orange"} />
+        <PacMan start={true} direction="up" color={"blue"} />
+        <PacMan start={true} direction="down" color={"red"} />
         </>
       }  
       { gameState === "menu" &&

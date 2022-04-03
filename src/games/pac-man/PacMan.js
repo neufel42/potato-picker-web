@@ -5,19 +5,39 @@ export const PacMan = (props) => {
   const [mouthOpenPercent, setMouthOpenPercent] = useState(props.mouthOpenPercent || 100);
   const [mouthOpening, setMouthOpening] = useState(false); // strats open and closes
   const [isDieing, setIsDieing] = useState(false); // strats open and closes
+  const direction = props.direction || "right";
   const color = props.color || 'yellow';
   const width = '100px';
   const height = '100px';  
+  let additionalRotation = 0;
+
+  switch(direction)
+  {
+    case "right":
+      additionalRotation = 0;
+      break;
+    case "left":
+      additionalRotation = 180;
+      break;
+    case "up":
+      additionalRotation = -90;
+      break;
+    case "down":
+      additionalRotation = 90;
+      break;
+  }
 
   // full open is 75%
   const slicePercent = 100 - (25 * (mouthOpenPercent / 100.0));
   let rotate = 45 * mouthOpenPercent / 100; // when the slicePercent is 75 rotate is 45 (quarter turn)
 
-  if (isDieing)
+  let additionalTransform = "";
+  if (additionalRotation !== 0)
   {
-    // Why 85?  seems about right
-    rotate = 85 * mouthOpenPercent / 400; // when the slicePercent is 75 rotate is 45 (quarter turn)    
+    additionalTransform = " translate(10, 10), rotate(" + additionalRotation + "), translate(-10, -10)";
   }
+
+  
 
   useEffect(
     () => {
@@ -79,7 +99,7 @@ export const PacMan = (props) => {
               stroke={color}
               stroke-width="10"
               stroke-dasharray={"calc(" + slicePercent + " * 31.4 / 100) 31.4"}
-              transform={"translate(10, 10), rotate(" + rotate + "), translate(-10, -10)"} />
+              transform={"translate(10, 10), rotate(" + rotate + "), translate(-10, -10)" + additionalTransform} />
     </svg>        
   );
 };
