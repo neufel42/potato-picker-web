@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import useSound from "use-sound";
+import deathSound from './PacManDeath.mp3';
+//https://orangefreesounds.com/pacman-death-sound/
 
 export const PacMan = (props) => {
 
@@ -11,6 +14,15 @@ export const PacMan = (props) => {
   const width = props.width || '100px';
   const height = props.height || '100px';    
   let additionalRotation = 0;
+
+  const isFirstDeath = useRef(true);
+  const [playDeath] = useSound(deathSound);
+
+  if (isDieing && isFirstDeath.current) {
+    isFirstDeath.current = false;
+    playDeath();
+  }
+  
 
   switch(direction)
   {
