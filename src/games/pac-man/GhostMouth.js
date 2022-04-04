@@ -56,7 +56,7 @@ export const GhostMouth = (props) => {
   );  
 
   return (
-    <div style={{height:height, width, width}} {...props}>
+    <div style={{height:height, width: width, ...props.style}}>
       <svg style={{width: '100%', height: '100%'}} viewBox="0 0 800 200">
         <path d={`M -33.0 ${firstNodePosition}
         L 53.6	${secondNodePosition}

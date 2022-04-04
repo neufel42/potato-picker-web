@@ -98,14 +98,14 @@ export const PacMan = (props) => {
   return (
     <svg 
       onClick={() => setIsDieing(true)} 
-      style={{width: width, height: height}}  
+      style={{width: width, height: height, position: "absolute", ...props.style}}        
       viewBox="0 0 20 20"
-      {...props} >
+      >
       <circle r="5" cx="10" cy="10" fill="transparent"
               stroke={color}
-              stroke-width="10"
-              stroke-dasharray={"calc(" + slicePercent + " * 31.4 / 100) 31.4"}
+              strokeWidth="10"
+              strokeDasharray={"calc(" + slicePercent + " * 31.4 / 100) 31.4"}
               transform={"translate(10, 10), rotate(" + rotate + "), translate(-10, -10)" + additionalTransform} />
-    </svg>        
+    </svg>            
   );
 };

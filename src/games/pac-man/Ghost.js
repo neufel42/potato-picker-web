@@ -11,7 +11,7 @@ export const Ghost = (props) => {
   const isScared = props.isScared || false;
 
   const actualColor = isScared ? scaredColor : color;
-  
+
   return (
     <div style={{width: width, height: height, display: "inline-block"}}>
       <div style={{position:"relative", width: '100%', height: '100%', overflow: "hidden"}}>
