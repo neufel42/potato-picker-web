@@ -4,6 +4,8 @@ import SimpleGame from './SimpleGame';
 import { ConnectFour } from './games/connect-four/ConnectFour';
 import { FlappyBird } from './games/flappy-bird/FlappyBird';
 import { PacMan } from './games/pac-man/PacMan';
+import { Ghost } from './games/pac-man/Ghost';
+import { GhostMouth } from './games/pac-man/GhostMouth';
 
 
 function App() {
@@ -26,6 +28,11 @@ function App() {
       }      
       { gameState === "pac-man" &&
         <>
+        <Ghost direction="right" color={"pink"} />
+        <Ghost direction="left" color={"orange"} />
+        <Ghost direction="down" color={"blue"} />
+        <Ghost direction="up" color={"red"} />
+        <Ghost color={"red"} isScared={true} />
         <PacMan start={true} direction="right" color={"yellow"}/>
         <PacMan start={true} direction="right" color={"pink"}/>
         <PacMan start={true} direction="left" color={"orange"} />

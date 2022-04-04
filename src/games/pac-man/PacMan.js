@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 
 export const PacMan = (props) => {
 
-  const [mouthOpenPercent, setMouthOpenPercent] = useState(props.mouthOpenPercent || 100);
+  const start = props.start || false;
+  const [mouthOpenPercent, setMouthOpenPercent] = useState(props.mouthOpenPercent || 0);
   const [mouthOpening, setMouthOpening] = useState(false); // strats open and closes
   const [isDieing, setIsDieing] = useState(false); // strats open and closes
   const direction = props.direction || "right";
   const color = props.color || 'yellow';
-  const width = '100px';
-  const height = '100px';  
+  const width = props.width || '100px';
+  const height = props.height || '100px';    
   let additionalRotation = 0;
 
   switch(direction)
@@ -35,14 +36,16 @@ export const PacMan = (props) => {
   if (additionalRotation !== 0)
   {
     additionalTransform = " translate(10, 10), rotate(" + additionalRotation + "), translate(-10, -10)";
-  }
-
-  
+  }  
 
   useEffect(
     () => {
-      if (isDieing && mouthOpenPercent >= 400)
-      {
+      if (!start) {
+        return; //have not started yet
+      }
+
+      if (isDieing && mouthOpenPercent >= 400) {
+        // Dead and all the way disappeared
         return;
       }
 
@@ -70,7 +73,6 @@ export const PacMan = (props) => {
         {
           setMouthOpening(false);
         }
-
     
         setMouthOpenPercent(newPercent);
       }, 30);
@@ -94,7 +96,11 @@ export const PacMan = (props) => {
   );  
 
   return (
-    <svg onClick={() => setIsDieing(true)} style={{width: width, height: height}} viewBox="0 0 20 20">
+    <svg 
+      onClick={() => setIsDieing(true)} 
+      style={{width: width, height: height}}  
+      viewBox="0 0 20 20"
+      {...props} >
       <circle r="5" cx="10" cy="10" fill="transparent"
               stroke={color}
               stroke-width="10"
