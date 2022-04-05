@@ -1,9 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import useSound from "use-sound";
+
+ //https://orangefreesounds.com/pacman-death-sound/
+// free for non commercial use
 import deathSound from './PacManDeath.mp3';
-//https://orangefreesounds.com/pacman-death-sound/
+
 
 export const PacMan = (props) => {
+  //console.log("PacMan", props);
+  const width = props.body.bounds.max.x - props.body.bounds.min.x;
+  const height = props.body.bounds.max.y - props.body.bounds.min.y;
+
+  const x = props.body.position.x - width /2;
+  const y = props.body.position.y - height /2;
 
   const start = props.start || false;
   const [mouthOpenPercent, setMouthOpenPercent] = useState(props.mouthOpenPercent || 0);
@@ -11,8 +20,10 @@ export const PacMan = (props) => {
   const [isDieing, setIsDieing] = useState(false); // strats open and closes
   const direction = props.direction || "right";
   const color = props.color || 'yellow';
-  const width = props.width || '100px';
-  const height = props.height || '100px';    
+  //const width = props.width || '100px';
+  //const height = props.height || '100px';    
+  //const x = props.x || 0;
+  //const y = props.y || 0;
   let additionalRotation = 0;
 
   const isFirstDeath = useRef(true);
@@ -53,6 +64,7 @@ export const PacMan = (props) => {
   useEffect(
     () => {
       if (!start) {
+        console.log("NOT START");
         return; //have not started yet
       }
 
@@ -110,7 +122,7 @@ export const PacMan = (props) => {
   return (
     <svg 
       onClick={() => setIsDieing(true)} 
-      style={{width: width, height: height, position: "absolute", ...props.style}}        
+      style={{width: width, height: height, top: x, left: y, position: "absolute", ...props.style}}        
       viewBox="0 0 20 20"
       >
       <circle r="5" cx="10" cy="10" fill="transparent"
