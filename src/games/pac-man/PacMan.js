@@ -13,10 +13,17 @@ export const PacMan = (props) => {
   const x = props.body ? props.body.position.x - width /2 : props.x || 0;
   const y = props.body ? props.body.position.y - height /2 : props.y || 0;  
 
+  if (props.body && !props?.collisionFilter) {
+    props.body.label = props.label;
+    props.body.parentProps = props;
+    props.body.collisionFilter.category = 0x0002;
+    props.body.collisionFilter.mask = 0x0001;
+  }
+
   const start = props.start || false;
   const [mouthOpenPercent, setMouthOpenPercent] = useState(props.mouthOpenPercent || 0);
   const [mouthOpening, setMouthOpening] = useState(false); // strats open and closes
-  const [isDieing, setIsDieing] = useState(false); // strats open and closes
+  const isDead = props.isDead || false;
   const direction = props.direction || "right";
   const color = props.color || 'yellow';
   //const width = props.width || '100px';
@@ -28,7 +35,7 @@ export const PacMan = (props) => {
   const isFirstDeath = useRef(true);
   const [playDeath] = useSound(deathSound);  
 
-  if (isDieing && isFirstDeath.current) {
+  if (isDead && isFirstDeath.current) {
     isFirstDeath.current = false;
     playDeath();
   }
@@ -67,13 +74,13 @@ export const PacMan = (props) => {
         return; //have not started yet
       }
 
-      if (isDieing && mouthOpenPercent >= 400) {
+      if (isDead && mouthOpenPercent >= 400) {
         // Dead and all the way disappeared
         return;
       }
 
       let increment = 5;
-      if (isDieing)
+      if (isDead)
       {
         increment = 10; // die faster
       }
@@ -88,11 +95,11 @@ export const PacMan = (props) => {
         {
           setMouthOpening(true);
         }
-        else if (newPercent > 100 && !isDieing)
+        else if (newPercent > 100 && !isDead)
         {
           setMouthOpening(false);
         }
-        else if (newPercent > 400 && isDieing)
+        else if (newPercent > 400 && isDead)
         {
           setMouthOpening(false);
         }
@@ -120,7 +127,6 @@ export const PacMan = (props) => {
 
   return (
     <svg 
-      onClick={() => setIsDieing(true)} 
       style={{width: width, height: height, top: y, left: x, position: "absolute", ...props.style}}        
       viewBox="0 0 20 20"
       >

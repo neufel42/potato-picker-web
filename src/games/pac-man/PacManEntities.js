@@ -21,35 +21,35 @@ export const PacManEntities = (windowHeight, windowWidth) => {
             world, 
             { x: 50, y: 300 }, 
             { height: 40, width: 40 }, 
-            { start: true },
+            { label: "PacMan", start: true },
             <PacMan />),
 
         GhostInky: WorldInsert(
             world, 
             { x: 150, y: 300 }, 
             { height: 40, width: 40 }, 
-            { start: true, color: 'red', direction: 'right' },
+            { label: "GhostInky", start: true, color: 'red', direction: 'right', isScared: true },
             <Ghost />),
 
         GhostPinky: WorldInsert(
             world, 
             { x: 200, y: 300 }, 
             { height: 40, width: 40 }, 
-            { start: true, color: 'pink', direction: 'right' },
+            { label: "GhostPinky", start: true, color: 'pink', direction: 'right', isScared: true },
             <Ghost />),
         
         GhostBlinky: WorldInsert(
             world,
             { x: 250, y: 300 },
             { height: 40, width: 40 },
-            { start: true, color: 'blue', direction: 'right' },
+            { label: "GhostBlinky", start: true, color: 'blue', direction: 'right', isScared: true },
             <Ghost />),
 
         GhostClyde: WorldInsert(
             world,
             { x: 300, y: 300 },
             { height: 40, width: 40 },
-            { start: true, color: 'orange', direction: 'right' },
+            { label: "GhostClyde", start: true, color: 'orange', direction: 'right' },
             <Ghost />),
 
     }

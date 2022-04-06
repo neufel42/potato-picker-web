@@ -75,17 +75,15 @@ export const PacManGame = (props) => {
           running={running}
           onEvent={(e) => {                    
             /*
-            if(e.type === "game-over") {
-              switch (e.type) {
-                  case 'game_over':
-                      setRunning(false)
-                      gameEngine.stop()
-                      break;
-                  case 'new_point':
-                      setCurrentPoints(currentPoints + 1)
-                      break;
-              }
-            }
+            switch (e.type) {
+                case 'game_over':
+                    setRunning(false)
+                    gameEngine.stop()
+                    break;
+                case 'new_point':
+                    setCurrentPoints(currentPoints + 1)
+                    break;
+            }                        
             */
           }}
           style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}

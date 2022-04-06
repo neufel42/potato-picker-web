@@ -20,11 +20,11 @@ export const PacManPhysics = (entities, options) => {
     else {
         if (input.length > 0) {
             input.forEach(key => {
-                console.log("COLUMN", key.name);
+                //console.log("COLUMN", key.name);
             });
         }
         if (input.keydown){
-            console.log("input keydown", input.keydown);
+            //console.log("input keydown", input.keydown);
         }
 
         const { payload } = input.find(x => (x.name === "onMouseDown" || x.name === "onKeyDown")) || {};
@@ -79,20 +79,23 @@ export const PacManPhysics = (entities, options) => {
                     break;
             }
             
+            /*
             Matter.Body.setVelocity(entities.PacMan.body, {
                 x: xVel,
                 y: yVel
             });
+            */
 
             Matter.Body.setVelocity(entities.GhostInky.body, {
                 x: xVel,
                 y: yVel
             });
-
+             
             Matter.Body.setVelocity(entities.GhostPinky.body, {
                 x: xVel,
                 y: yVel
             });
+            
 
             Matter.Body.setVelocity(entities.GhostBlinky.body, {
                 x: xVel,
@@ -102,7 +105,7 @@ export const PacManPhysics = (entities, options) => {
             Matter.Body.setVelocity(entities.GhostClyde.body, {
                 x: xVel,
                 y: yVel
-            });
+            });            
         }
     }    
 
@@ -133,6 +136,23 @@ export const PacManPhysics = (entities, options) => {
     */
 
     Matter.Events.on(engine, 'collisionStart', (event) => {
+        const entity1 = entities[event.pairs[0].bodyA.label];
+        const entity2 = entities[event.pairs[0].bodyB.label];
+
+        if (entity1.isScared && entity2.label === "PacMan") {
+            entity1.isDead = true;
+        }
+        else if (entity2.isScared && entity1.label === "PacMan") {
+            entity2.isDead = true;
+        }
+        else {
+            if (entity1.label === "PacMan") {
+                entity1.isDead = true;
+            }
+            else if (entity2.label === "PacMan") {
+                entity2.isDead = true;
+            }
+        }
         dispatch({ type: 'game_over' })
     })
     return entities;

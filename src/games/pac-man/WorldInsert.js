@@ -5,7 +5,7 @@ export const WorldInsert = (world, pos, size, props, renderer) => {
        pos.x,
        pos.y,
        size.width,
-       size.height, {friction: 0, frictionAir: 0, frictionStatic: 0}
+       size.height, {friction: 0, frictionAir: 0, frictionStatic: 0, isSensor: true}
    );
    Matter.World.add(world, initialObject)   
 
