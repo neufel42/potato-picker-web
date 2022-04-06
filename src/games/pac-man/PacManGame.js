@@ -67,13 +67,15 @@ export const PacManGame = (props) => {
   */
 
   return (
-    <div style={{width: '100vw', height: '100vh', overflow: 'hidden', position: 'absolute'}}>
+    <div style={{width: '100vw', height: '100vh', overflow: 'hidden', position: 'absolute', backgroundColor: 'black'}}>
       <GameEngine
           ref={(ref) => { setGameEngine(ref) }}
           systems={[PacManPhysics]}
           entities={PacManEntities(windowHeight, windowWidth)}
           running={running}
           onEvent={(e) => {                    
+            /*
+            if(e.type === "game-over") {
               switch (e.type) {
                   case 'game_over':
                       setRunning(false)
@@ -82,7 +84,9 @@ export const PacManGame = (props) => {
                   case 'new_point':
                       setCurrentPoints(currentPoints + 1)
                       break;
-          }
+              }
+            }
+            */
           }}
           style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
       >            

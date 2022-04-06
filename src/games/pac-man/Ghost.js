@@ -3,8 +3,12 @@ import { GhostMouth } from "./GhostMouth";
 import { PacMan } from "./PacMan";
 
 export const Ghost = (props) => {
-  const width = props.width || '100px';
-  const height = props.height || '100px';  
+  const width = props.body ? props.body.bounds.max.x - props.body.bounds.min.x : props.width || 0;
+  const height = props.body ? props.body.bounds.max.y - props.body.bounds.min.y: props.height || 0;
+
+  const x = props.body ? props.body.position.x - width /2 : props.x || 0;
+  const y = props.body ? props.body.position.y - height /2 : props.y || 0;  
+
   const color = props.color || 'red';
   const scaredColor = props.scaredColor || 'purple';
   const direction = props.direction || 'right';
@@ -13,7 +17,7 @@ export const Ghost = (props) => {
   const actualColor = isScared ? scaredColor : color;
 
   return (
-    <div style={{width: width, height: height, display: "inline-block"}}>
+    <div style={{width: width, height: height, top: y, left: x, position: "absolute", display: "inline-block"}}>
       <div style={{position:"relative", width: '100%', height: '100%', overflow: "hidden"}}>
         <div style={{backgroundColor:actualColor, borderTopLeftRadius:50, borderTopRightRadius:50, width: '100%', height: '80%', top: '50px'}}>
         </div>

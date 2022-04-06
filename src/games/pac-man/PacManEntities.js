@@ -24,9 +24,33 @@ export const PacManEntities = (windowHeight, windowWidth) => {
             { start: true },
             <PacMan />),
 
-        Ghost1: Ghost({direction:"right", color:"red", start: true}),
-        Ghost2: Ghost({direction:"left", color:"blue", start: true}),
-        Ghost3: Ghost({direction:"up", color:"green", start: true}),
-        Ghost4: Ghost({direction:"down", color:"pink", start: true}),
+        GhostInky: WorldInsert(
+            world, 
+            { x: 150, y: 300 }, 
+            { height: 40, width: 40 }, 
+            { start: true, color: 'red', direction: 'right' },
+            <Ghost />),
+
+        GhostPinky: WorldInsert(
+            world, 
+            { x: 200, y: 300 }, 
+            { height: 40, width: 40 }, 
+            { start: true, color: 'pink', direction: 'right' },
+            <Ghost />),
+        
+        GhostBlinky: WorldInsert(
+            world,
+            { x: 250, y: 300 },
+            { height: 40, width: 40 },
+            { start: true, color: 'blue', direction: 'right' },
+            <Ghost />),
+
+        GhostClyde: WorldInsert(
+            world,
+            { x: 300, y: 300 },
+            { height: 40, width: 40 },
+            { start: true, color: 'orange', direction: 'right' },
+            <Ghost />),
+
     }
 }

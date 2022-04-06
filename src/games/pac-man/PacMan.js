@@ -7,12 +7,11 @@ import deathSound from './PacManDeath.mp3';
 
 
 export const PacMan = (props) => {
-  //console.log("PacMan", props);
-  const width = props.body.bounds.max.x - props.body.bounds.min.x;
-  const height = props.body.bounds.max.y - props.body.bounds.min.y;
+  const width = props.body ? props.body.bounds.max.x - props.body.bounds.min.x : props.width || 0;
+  const height = props.body ? props.body.bounds.max.y - props.body.bounds.min.y: props.height || 0;
 
-  const x = props.body.position.x - width /2;
-  const y = props.body.position.y - height /2;
+  const x = props.body ? props.body.position.x - width /2 : props.x || 0;
+  const y = props.body ? props.body.position.y - height /2 : props.y || 0;  
 
   const start = props.start || false;
   const [mouthOpenPercent, setMouthOpenPercent] = useState(props.mouthOpenPercent || 0);
@@ -27,7 +26,7 @@ export const PacMan = (props) => {
   let additionalRotation = 0;
 
   const isFirstDeath = useRef(true);
-  const [playDeath] = useSound(deathSound);
+  const [playDeath] = useSound(deathSound);  
 
   if (isDieing && isFirstDeath.current) {
     isFirstDeath.current = false;
@@ -122,7 +121,7 @@ export const PacMan = (props) => {
   return (
     <svg 
       onClick={() => setIsDieing(true)} 
-      style={{width: width, height: height, top: x, left: y, position: "absolute", ...props.style}}        
+      style={{width: width, height: height, top: y, left: x, position: "absolute", ...props.style}}        
       viewBox="0 0 20 20"
       >
       <circle r="5" cx="10" cy="10" fill="transparent"

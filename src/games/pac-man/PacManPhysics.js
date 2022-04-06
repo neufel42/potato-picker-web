@@ -43,27 +43,63 @@ export const PacManPhysics = (entities, options) => {
             switch (key) {
                 case "ArrowUp":
                     entities.PacMan.direction = "up";
-                    xVel = -4;
-                    yVel = 0;
+                    entities.GhostBlinky.direction = "up";
+                    entities.GhostPinky.direction = "up";
+                    entities.GhostInky.direction = "up";
+                    entities.GhostClyde.direction = "up";
+                    xVel = 0;
+                    yVel = -4;
                     break;
                 case "ArrowDown":
                     entities.PacMan.direction = "down";
-                    xVel = 4;
-                    yVel = 0;
+                    entities.GhostBlinky.direction = "down";
+                    entities.GhostPinky.direction = "down";
+                    entities.GhostInky.direction = "down";
+                    entities.GhostClyde.direction = "down";
+                    xVel = 0;
+                    yVel = 4;
                     break;
                 case "ArrowLeft":
                     entities.PacMan.direction = "left";
-                    xVel = 0;
-                    yVel = -4;                    
+                    entities.GhostBlinky.direction = "left";
+                    entities.GhostPinky.direction = "left";
+                    entities.GhostInky.direction = "left";
+                    entities.GhostClyde.direction = "left";
+                    xVel = -4;
+                    yVel = 0;                    
                     break;
                 case "ArrowRight":
                     entities.PacMan.direction = "right";
-                    xVel = 0;
-                    yVel = 4;
+                    entities.GhostBlinky.direction = "right";
+                    entities.GhostPinky.direction = "right";
+                    entities.GhostInky.direction = "right";
+                    entities.GhostClyde.direction = "right";
+                    xVel = 4;
+                    yVel = 0;
                     break;
             }
             
             Matter.Body.setVelocity(entities.PacMan.body, {
+                x: xVel,
+                y: yVel
+            });
+
+            Matter.Body.setVelocity(entities.GhostInky.body, {
+                x: xVel,
+                y: yVel
+            });
+
+            Matter.Body.setVelocity(entities.GhostPinky.body, {
+                x: xVel,
+                y: yVel
+            });
+
+            Matter.Body.setVelocity(entities.GhostBlinky.body, {
+                x: xVel,
+                y: yVel
+            });
+
+            Matter.Body.setVelocity(entities.GhostClyde.body, {
                 x: xVel,
                 y: yVel
             });
