@@ -6,8 +6,8 @@ export const Ghost = (props) => {
   const width = props.body ? props.body.bounds.max.x - props.body.bounds.min.x : props.width || 0;
   const height = props.body ? props.body.bounds.max.y - props.body.bounds.min.y: props.height || 0;
 
-  const x = props.body ? props.body.position.x - width /2 : props.x || 0;
-  const y = props.body ? props.body.position.y - height /2 : props.y || 0;  
+  const x = props.body ? props.body.position.x : props.x || 0;
+  const y = props.body ? props.body.position.y : props.y || 0;  
 
   if (props.body && !props?.collisionFilter) {
     props.body.label = props.label;

@@ -16,3 +16,19 @@ export const WorldInsert = (world, pos, size, props, renderer) => {
        renderer: renderer
    }
 }
+
+export const WorldInsertPolygon = (world, pos, vertexSets, props, renderer) => {
+    const initialObject = Matter.Bodies.fromVertices(
+         pos.x,
+         pos.y,
+         vertexSets, {friction: 0, frictionAir: 0, frictionStatic: 0, isSensor: props.isSensor || true}
+    );
+    Matter.World.add(world, initialObject)   
+    
+    return {
+         body: initialObject,
+         pos,
+         ...props,
+         renderer: renderer
+    }        
+ }

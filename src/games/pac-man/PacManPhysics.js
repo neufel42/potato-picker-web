@@ -2,8 +2,8 @@ import Matter from "matter-js";
 
 export const PacManPhysics = (entities, options) => {
     const { input, touches, time, dispatch } = options;
-    const windowHeight = entities.windowHeight;
-    const windowWidth = entities.windowWidth;
+    //const windowHeight = entities.windowHeight;
+    //const windowWidth = entities.windowWidth;
     
     let engine = entities.physics.engine    
 
@@ -77,6 +77,8 @@ export const PacManPhysics = (entities, options) => {
                     xVel = 4;
                     yVel = 0;
                     break;
+                default:
+                    break;
             }
             
             /*
@@ -136,6 +138,7 @@ export const PacManPhysics = (entities, options) => {
     */
 
     Matter.Events.on(engine, 'collisionStart', (event) => {
+        // Move this logic somewhere else
         const entity1 = entities[event.pairs[0].bodyA.label];
         const entity2 = entities[event.pairs[0].bodyB.label];
 
